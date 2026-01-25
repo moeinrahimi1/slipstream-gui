@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Slipstream Proxy</title>
+  <link rel="stylesheet" href="./assets/styles/style.css" />
+</head>
+<body>
+  <div class="card">
+    <h1>Slipstream</h1>
+    <p id="status" class="status off">Proxy Disabled</p>
+
+    <div class="input-group">
+<label for="domain">Domain</label>
+<input
+  id="domain"
+  type="text"
+  placeholder="example.com"
+  spellcheck="false"
+/>
+</div>
+    <div class="toggle-wrapper">
+
+     <button id="toggle" class="toggle off">
+  <div class="knob"></div>
+  <div class="spinner"></div>
+</button>
+
+    </div>
+
+    <span class="hint">SOCKS5 · 127.0.0.1:5201</span>
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>

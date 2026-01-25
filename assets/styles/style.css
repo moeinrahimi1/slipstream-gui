@@ -1,0 +1,157 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  margin: 0;
+  background: radial-gradient(
+    circle at top,
+    #1e293b,
+    #020617 70%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Inter, system-ui, sans-serif;
+  color: #e5e7eb;
+}
+
+.card {
+    display: flex;
+  flex-direction: column;
+
+  width: 360px;
+  padding: 32px;
+  border-radius: 20px;
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(20px);
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.6),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+  text-align: center;
+}
+
+h1 {
+  margin: 0;
+  font-size: 28px;
+  letter-spacing: 0.5px;
+}
+
+.status {
+  margin: 12px 0 28px;
+  font-size: 14px;
+  letter-spacing: 0.4px;
+  opacity: 0.85;
+}
+
+.status.on {
+  color: #4ade80;
+}
+
+.status.off {
+  color: #f87171;
+}
+
+.toggle-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.toggle {
+  width: 96px;
+  height: 48px;
+  border-radius: 999px;
+  background: #7f1d1d;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  transition: background 0.25s ease, box-shadow 0.25s ease;
+  position: relative;
+}
+
+.toggle.on {
+  background: #166534;
+  box-shadow: 0 0 24px rgba(74, 222, 128, 0.6);
+}
+
+.knob {
+  width: 40px;
+  height: 40px;
+  background: #f8fafc;
+  border-radius: 50%;
+  transform: translateX(0);
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.toggle.on .knob {
+  transform: translateX(48px);
+}
+
+.hint {
+  display: block;
+  margin-top: 28px;
+  font-size: 12px;
+  color: #94a3b8;
+  letter-spacing: 0.3px;
+}
+.spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 22px;
+  height: 22px;
+  margin: -11px;
+  border: 3px solid rgba(255, 255, 255, 0.25);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  opacity: 0;
+  pointer-events: none;
+
+}
+.toggle{
+      position: relative; /* THIS is the missing piece */
+
+}
+.toggle.connecting .spinner {
+  opacity: 1;
+}
+
+.toggle.connecting .knob {
+  opacity: 0;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.input-group {
+  text-align: left;
+    margin: 24px 0 24px;
+  position: relative;
+  z-index: 1;
+
+}
+
+.input-group label {
+  display: block;
+  font-size: 12px;
+  color: #94a3b8;
+  margin-bottom: 6px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: rgba(2, 6, 23, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #e5e7eb;
+  font-size: 14px;
+  outline: none;
+}
+
+.input-group input:focus {
+  border-color: #60a5fa;
+}
