@@ -46,7 +46,15 @@ ipcMain.handle("enable", async (_,domain) => {
   ], {
     windowsHide: true
   });
+slipstreamProc.stdout.on("data", (data) => {
+  console.log(data.toString(),'data')
+  mainWindow.webContents.send("log", data.toString());
+});
 
+slipstreamProc.stderr.on("data", (data) => {
+  console.log(data.toString(),'err')
+  mainWindow.webContents.send("log", "[ERR] " + data.toString());
+});
   slipstreamProc.on("exit", () => {
     slipstreamProc = null;
     unsetProxy();
@@ -73,7 +81,7 @@ ipcMain.handle("disable", async () => {
 function createWindow() {
   mainWindow = new BrowserWindow({
     width: 400,
-    height: 400,
+    height: 500,
     webPreferences: {
       preload: path.join(__dirname, "preload.js")
     }

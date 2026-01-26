@@ -45,7 +45,24 @@ if (state === "off") {
 
 };
 
-window.api.onError((msg) => {
-  alert(msg); // replaced later with toast if you want
-  setState("off");
-});
+// window.api.onError((msg) => {
+//   alert(msg); // replaced later with toast if you want
+//   setState("off");
+// });
+const logsEl = document.getElementById("logs");
+const MAX_LINES = 300;
+function appendLog(text) {
+  const lines = text.split(/\r?\n/).filter(Boolean);
+
+  for (const line of lines) {
+    logsEl.textContent += line + "\n";
+  }
+
+  const all = logsEl.textContent.split("\n");
+  if (all.length > MAX_LINES) {
+    logsEl.textContent = all.slice(-MAX_LINES).join("\n");
+  }
+
+  logsEl.scrollTop = logsEl.scrollHeight;
+}
+window.api.onLog(appendLog);
