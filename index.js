@@ -80,8 +80,8 @@ ipcMain.handle("disable", async () => {
 
 function createWindow() {
   mainWindow = new BrowserWindow({
-    width: 400,
-    height: 500,
+    width: 800,
+    height: 600,
     webPreferences: {
       preload: path.join(__dirname, "preload.js")
     }
